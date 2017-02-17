@@ -41,7 +41,9 @@ table, th, td {
 #MyBoard .ship{
 background-color: orange;
 }
-
+.ui-draggable {
+    cursor: move!important;
+}
  .taskbar{
 	display: block;
     color: white;
