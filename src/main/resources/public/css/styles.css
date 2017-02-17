@@ -1,6 +1,6 @@
-html,
-body {
+html {
     margin: 0;
+	background-color: light-gray;
     padding: 0;
 }
 
@@ -8,6 +8,24 @@ body {
 /*with:100px;
 height:100px;*/
 background-color: light-gray;
+}
+
+ ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li:nth-last-child(4) {
+	Float: left;
+	Border-right: 1px solid #bb;
+}
+
+li {
+	Float: right;
+	Border-right: 1px solid #bb;
 }
 
 .gameBoard td {
@@ -24,6 +42,41 @@ table, th, td {
 background-color: orange;
 }
 
+ .taskbar{
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+ }
+
+.myActiveButton {
+	background-color: red;
+	display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+	}
+	
+	body {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+	background: linear-gradient( to right, black 0%, green 8%, green , red , red 90%, black);
+    /*background: linear-gradient(to right, green 0%,green 50%,#000000 50%,red 50%,red 100%);*/ 
+    color: black;
+    min-width: 550px;
+    max-width: 1200px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 300;
+    padding: 15px;
+}
+
+p {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
 /*
 button {
     margin: 0;
