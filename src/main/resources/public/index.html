@@ -11,6 +11,20 @@
         <li><a class="taskbar" href="GameRules.html"> Game Rules</a></li>
         <li><a class="taskbar" href="AboutUs.html">About Us</a></li>
     </ul>
+
+<!--This script to toggle (show/hide) element -->
+    <script type="text/javascript">
+        <!--
+            function toggle_visibility(id) {
+               var e = document.getElementById(id);
+               if(e.style.display == 'block')
+                  e.style.display = 'none';
+               else
+                  e.style.display = 'block';
+            }
+        //-->
+    </script>
+
 </head>
 <script src="/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="/js/app.js"></script>
@@ -191,6 +205,7 @@
             </tr>
         </table>
     </div>
+
     <BR><BR><BR>
     <H1>Theirs</H1>
     <div id="TheirBoard" class="gameBoard">
@@ -381,8 +396,34 @@
     </div>
 
 
-
 </section>
+
+    <div id="Error_pop_up_box" class="position_of_popup">
+        <div id="popup_wrapper">
+            <div id="popup_container">
+                <h3>Error Message:</h3>
+                <p>This place is already used. Choose another place to place ships or to fire</p>
+                <p><a href="javascript:void(0)" onclick="toggle_visibility('Error_pop_up_box');">OK, GOT IT</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="ShipsDestroyed_pop_up_box" class="position_of_popup">
+        <div id="popup_wrapper">
+            <div id="popup_container">
+                <h3>End of Game:</h3>
+                <p>Game Over! All your ships have been destroyed!</p>
+                <p><a href="javascript:void(0)" onclick="toggle_visibility('ShipsDestroyed_pop_up_box');">OK,Bye</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <p><a href-"javascript:void(0)" onclick="toggle_visibility('Error_pop_up_box');">Click for Error Popup Box</a></p>
+        <p><a href-"javascript:void(0)" onclick="toggle_visibility('ShipsDestroyed_pop_up_box');">Click for Player Ships Destroyed Popup Box</a></p>
+    </div>
+
+
 </body>
 <script>
    $('#TheirBoard td').click(function(event) {
