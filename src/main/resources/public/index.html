@@ -64,11 +64,17 @@
 
 
 
-
 <section id="todoapp" ic-target="this">
     <!--#parse("/velocity/todoList.vm")-->
-    <h1>Yours</h1>
-    <div id="MyBoard" class="gameBoard">
+    <br><br>
+    <form><font color="Yellow">Aircraftcarrier   <input align="left" type="textbox" value="           XX " size="10" class="ui-draggable"><br><br>
+        Battleship   <input align="center" type="textbox" value="          X   " size="8" class="ui-draggable"><br><br>
+        Cruiser   <input type="textbox"  size="5.5" class="ui-draggable"><br><br>
+        Submarine   <input type="textbox" size="3.5" class="ui-draggable"><br><br>
+        Destroyer   <input type="textbox"  size="1" class="ui-draggable"></font></form>
+    <br><br>
+    <div id="MyBoard" class="gameBoard" style="float: left;">
+        <h1>Yours</h1>
         <table>
             <tr id="My_Row_1">
                 <td id="1_1"  class="{{1_1}}"></td>
@@ -193,9 +199,16 @@
         </table>
     </div>
 
-    <H1>Theirs</H1>
+
+
+
+    <H1 style="float: right;">Theirs</H1>
+    <BR><BR><BR>
+
     <div id="TheirBoard" class="gameBoard">
-        <table>
+        <table style="float: right;">
+
+
             <tr id="My_Row_1">
                 <td id="1_1"  class="{{1_1}}"></td>
                 <td id="1_2"  class="{{1_2}}"></td>
@@ -319,9 +332,9 @@
         </table>
     </div>
 
-    <h1>Fire:</h1>
+    <h1>&nbsp; Fire:</h1>
     <div id="FireDiv">
-        Row:
+        &nbsp;&nbsp;Row:
         <select name="rowFire" id="rowFire">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -334,7 +347,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
-        Column:
+        &nbsp;Column:
         <select name="colFire" id="colFire">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -347,12 +360,12 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
-        <button type="button" onclick="fire()">Fire</button>
+        <h2>  &nbsp;&nbsp;<button type="button" onclick="fire()">Fire</button> &nbsp;</h2>
     </div>
 
-    <h1>Scan:</h1>
+    <h1> &nbsp;Scan:</h1>
     <div id="ScanDiv">
-        Row:
+        &nbsp; Row:
         <select name="rowFire" id="rowScan">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -365,7 +378,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
-        Column:
+        &nbsp; Column:
         <select name="colFire" id="colScan">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -378,7 +391,7 @@
             <option value="9">9</option>
             <option value="10">10</option>
         </select>
-        <button type="button" onclick="scan()">Scan</button>
+        <h2> &nbsp;<button type="button" onclick="scan()">Scan</button> &nbsp;</h2>
     </div>
 
 
