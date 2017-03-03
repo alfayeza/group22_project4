@@ -112,6 +112,7 @@ public class BattleshipModel {
     public void shootAtPlayer() {
         int max = 10;
         int min = 1;
+        int a=0;
         
         Random random = new Random();
         int randRow = random.nextInt(max - min + 1) + min;
