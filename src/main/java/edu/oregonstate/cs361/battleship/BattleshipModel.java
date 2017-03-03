@@ -113,7 +113,7 @@ public class BattleshipModel {
         int max = 10;
         int min = 1;
         int a=0;
-        
+
         Random random = new Random();
         int randRow = random.nextInt(max - min + 1) + min;
         int randCol = random.nextInt(max - min + 1) + min;
