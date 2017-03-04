@@ -9,17 +9,17 @@ import java.util.Random;
  */
 public class BattleshipModel {
 
-    private Ship aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship battleship = new Ship("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+    private Military aircraftCarrier = new Military("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    private Military battleship = new Military("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
     private Civilian clipper = new Civilian("Clipper",3, new Coordinate(0,0),new Coordinate(0,0));
     private Civilian dinghy = new Civilian("Dinghy",1, new Coordinate(0,0),new Coordinate(0,0));
-    private Ship submarine = new Ship("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+    private Military submarine = new Military("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
 
-    private Ship computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
-    private Ship computer_battleship = new Ship("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
+    private Military computer_aircraftCarrier = new Military("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
+    private Military computer_battleship = new Military("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
     private Civilian computer_clipper = new Civilian("Computer_Clipper",3, new Coordinate(4,1),new Coordinate(4,4));
     private Civilian computer_dinghy = new Civilian("Computer_Dinghy",2, new Coordinate(7,3),new Coordinate(7,5));
-    private Ship computer_submarine = new Ship("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
+    private Military computer_submarine = new Military("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
 
     ArrayList<Coordinate> playerHits;
     private ArrayList<Coordinate> playerMisses;
