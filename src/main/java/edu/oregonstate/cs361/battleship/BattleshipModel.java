@@ -11,8 +11,7 @@ public class BattleshipModel {
 
     private Ship aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
     private Ship battleship = new Ship("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
-    private Civilian clipper = new Civilian("Clipper",3, new Coordinate(0,0),new Coordinate(0,0));
-    private Civilian dinghy = new Civilian("Dinghy",1, new Coordinate(0,0),new Coordinate(0,0));
+
     private Ship submarine = new Ship("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
 
     private Ship computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
