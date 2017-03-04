@@ -23,6 +23,7 @@ public class Ship {
 
     }
 
+
     public boolean covers(Coordinate test) {
         //horizontal
         if(start.getAcross() == end.getAcross()){
