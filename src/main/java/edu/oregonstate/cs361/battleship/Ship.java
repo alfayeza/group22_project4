@@ -20,7 +20,9 @@ public class Ship {
     public void setLocation(Coordinate s, Coordinate e) {
         start = s;
         end = e;
+
     }
+
 
     public boolean covers(Coordinate test) {
         //horizontal
