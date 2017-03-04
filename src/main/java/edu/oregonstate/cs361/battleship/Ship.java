@@ -53,6 +53,13 @@ public class Ship {
         return name;
     }
 
+    public Coordinate getStart() {return start;}
+
+    public int getStartAcross() {return start.getAcross();}
+
+    public int getStartDown() {return start.getDown();}
+
+    public Coordinate getEnd() {return end;}
 
     public boolean scan(Coordinate coor) {
         if(covers(coor)){
@@ -72,4 +79,6 @@ public class Ship {
         }
         return false;
     }
+
+
 }

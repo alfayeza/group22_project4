@@ -25,8 +25,10 @@ public class BattleshipModel {
     private ArrayList<Coordinate> playerMisses;
     ArrayList<Coordinate> computerHits;
     private ArrayList<Coordinate> computerMisses;
+    ArrayList<Coordinate> startLocation;
 
     boolean scanResult = false;
+    boolean isVertical = false;
 
 
 
@@ -57,11 +59,17 @@ public class BattleshipModel {
     public BattleshipModel placeShip(String shipName, String row, String col, String orientation) {
         int rowint = Integer.parseInt(row);
         int colInt = Integer.parseInt(col);
+        Coordinate startLoc = new Coordinate(rowint,colInt);
+
         if(orientation.equals("horizontal")){
             if (shipName.equalsIgnoreCase("aircraftcarrier")) {
                 this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+5));
             } if(shipName.equalsIgnoreCase("battleship")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
+                this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint, colInt + 4));
+
+            /*} if(shipName.equalsIgnoreCase("Cruiser")) {
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
+            } if(shipName.equalsIgnoreCase("destroyer")) {*/
             } if(shipName.equalsIgnoreCase("clipper")) {
                 this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
             } if(shipName.equalsIgnoreCase("dinghy")) {
@@ -71,16 +79,23 @@ public class BattleshipModel {
             }
         }else{
             //vertical
+
+
                 if (shipName.equalsIgnoreCase("aircraftcarrier")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+5,colInt));
-                } if(shipName.equalsIgnoreCase("battleship")) {
+                    isVertical = true;
+                }if(shipName.equalsIgnoreCase("battleship")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
-                } if(shipName.equalsIgnoreCase("Clipper")) {
+                    isVertical = true;
+                }if(shipName.equalsIgnoreCase("Clipper")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
-                } if(shipName.equalsIgnoreCase("dinghy")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+2,colInt));
+                    isVertical = true;
+                }if(shipName.equalsIgnoreCase("dinghy")) {
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+2,colInt));
+                    isVertical = true;
                 }if(shipName.equalsIgnoreCase("submarine")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint, colInt), new Coordinate(rowint + 2, colInt));
+                    isVertical = true;
                 }
         }
         return this;
@@ -92,13 +107,23 @@ public class BattleshipModel {
             computerHits.add(coor);
         }else if (computer_battleship.covers(coor)){
             computerHits.add(coor);
-        }else if (computer_clipper.covers(coor)){
-            computerHits.add(coor);
+        }else if (computer_clipper.covers(coor)) {
+            computerHits.add(computer_clipper.getStart());
+            computerHits.add(computer_clipper.getEnd());
+            //add code to sink entire civilian ship
+            Coordinate begin = computer_clipper.getStart();
+            Coordinate end = computer_clipper.getEnd();
+
+            if (isVertical == true) {
+                computerHits.add(new Coordinate(coor.getAcross()+1,coor.getDown()));
+            }else if (isVertical == false) {
+                computerHits.add(new Coordinate(coor.getAcross(),coor.getDown()+1));
+            }
         }else if (computer_dinghy.covers(coor)){
             computerHits.add(coor);
         }else if (computer_submarine.covers(coor)){
             computerHits.add(coor);
-        } else {
+        }else {
             computerMisses.add(coor);
         }
     }
@@ -115,6 +140,8 @@ public class BattleshipModel {
     }
 
     void playerShot(Coordinate coor) {
+
+
         if(playerMisses.contains(coor)){
             System.out.println("Dupe");
         }
@@ -123,21 +150,31 @@ public class BattleshipModel {
             playerHits.add(coor);
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
-        }else if (clipper.covers(coor)){
-            playerHits.add(coor);
-        }else if (dinghy.covers(coor)){
-            playerHits.add(coor);
-        }else if (submarine.covers(coor)){
-            playerHits.add(coor);
-        } else {
-            playerMisses.add(coor);
+        }else if (clipper.covers(coor)) {
+            if (isVertical == true) {
+                playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown()));
+                playerHits.add(new Coordinate(clipper.getStartAcross() + 1, clipper.getStartDown()));
+                playerHits.add(new Coordinate(clipper.getStartAcross() + 2, clipper.getStartDown()));
+                playerHits.add(new Coordinate(clipper.getStartAcross() + 3, clipper.getStartDown()));
+            } else if (isVertical == false) {
+                playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown()));
+                playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 1));
+                playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 2));
+                playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 3));
+            } else if (dinghy.covers(coor)) {
+                playerHits.add(coor);
+            } else if (submarine.covers(coor)) {
+                playerHits.add(coor);
+            } else {
+                playerMisses.add(coor);
+            }
         }
     }
 
 
     public void scan(int rowInt, int colInt) {
         Coordinate coor = new Coordinate(rowInt,colInt);
-        scanResult = false;
+            scanResult = false;
         if(computer_aircraftCarrier.scan(coor)){
             scanResult = true;
         }
@@ -154,7 +191,5 @@ public class BattleshipModel {
         }
     }
 
-    public boolean getScanResult() {
-        return scanResult;
-    }
+
 }
