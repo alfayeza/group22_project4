@@ -4,28 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by michaelhilton on 1/4/17.
- */
+
 public class BattleshipModel {
 
-    private Military aircraftCarrier = new Military("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
-    private Military battleship = new Military("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
-    private Civilian clipper = new Civilian("Clipper",3, new Coordinate(0,0),new Coordinate(0,0));
-    private Civilian dinghy = new Civilian("Dinghy",1, new Coordinate(0,0),new Coordinate(0,0));
-    private Military submarine = new Military("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
+    private Ship aircraftCarrier = new Ship("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0));
+    private Ship battleship = new Ship("Battleship",4, new Coordinate(0,0),new Coordinate(0,0));
+    private Ship clipper = new Ship("Clipper",3, new Coordinate(0,0),new Coordinate(0,0));
+    private Ship dinghy = new Ship("Dinghy",1, new Coordinate(0,0),new Coordinate(0,0));
+    private Ship submarine = new Ship("Submarine",2, new Coordinate(0,0),new Coordinate(0,0));
 
-    private Military computer_aircraftCarrier = new Military("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
-    private Military computer_battleship = new Military("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
-    private Civilian computer_clipper = new Civilian("Computer_Clipper",3, new Coordinate(4,1),new Coordinate(4,4));
-    private Civilian computer_dinghy = new Civilian("Computer_Dinghy",2, new Coordinate(7,3),new Coordinate(7,5));
-    private Military computer_submarine = new Military("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
+    private Ship computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7));
+    private Ship computer_battleship = new Ship("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8));
+    private Ship computer_clipper = new Ship("Computer_Clipper",3, new Coordinate(4,1),new Coordinate(4,4));
+    private Ship computer_dinghy = new Ship("Computer_Dinghy",2, new Coordinate(7,3),new Coordinate(7,3));
+    private Ship computer_submarine = new Ship("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8));
 
-    ArrayList<Coordinate> playerHits;
+    private ArrayList<Coordinate> playerHits;
     private ArrayList<Coordinate> playerMisses;
-    ArrayList<Coordinate> computerHits;
+    private ArrayList<Coordinate> computerHits;
     private ArrayList<Coordinate> computerMisses;
-    ArrayList<Coordinate> startLocation;
+
+
+    private int easyRow =0;
+    private int easyCol =1;
 
     boolean scanResult = false;
     boolean isVertical = false;
@@ -129,14 +130,16 @@ public class BattleshipModel {
     }
 
     public void shootAtPlayer() {
-        int max = 10;
-        int min = 1;
-        Random random = new Random();
-        int randRow = random.nextInt(max - min + 1) + min;
-        int randCol = random.nextInt(max - min + 1) + min;
+        //this is easy mode, goes from one to 10 then moves columns
+            easyRow++;
+            if(easyRow%10==0){
+                easyRow=1;
+                easyCol++;
+            }
+           Coordinate coor = new Coordinate(easyRow, easyCol);
 
-        Coordinate coor = new Coordinate(randRow,randCol);
-        playerShot(coor);
+           playerShot(coor);
+            //end of easy mode
     }
 
     void playerShot(Coordinate coor) {
@@ -150,6 +153,10 @@ public class BattleshipModel {
             playerHits.add(coor);
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
+        } else if (dinghy.covers(coor)) {
+            playerHits.add(coor);
+        } else if (submarine.covers(coor)) {
+            playerHits.add(coor);
         }else if (clipper.covers(coor)) {
             if (isVertical == true) {
                 playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown()));
@@ -161,10 +168,6 @@ public class BattleshipModel {
                 playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 1));
                 playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 2));
                 playerHits.add(new Coordinate(clipper.getStartAcross(), clipper.getStartDown() + 3));
-            } else if (dinghy.covers(coor)) {
-                playerHits.add(coor);
-            } else if (submarine.covers(coor)) {
-                playerHits.add(coor);
             } else {
                 playerMisses.add(coor);
             }
