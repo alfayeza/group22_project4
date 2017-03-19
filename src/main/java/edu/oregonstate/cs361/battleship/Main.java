@@ -65,7 +65,7 @@ public class Main {
         int colInt = Integer.parseInt(col);
         currModel.shootAtComputer(rowInt,colInt);
         currModel.shootAtPlayer();
-
+        //currModel.shootAtPlayer_hard();
         Gson gson = new Gson();
         return gson.toJson(currModel);
     }
@@ -80,6 +80,7 @@ public class Main {
         int colInt = Integer.parseInt(col);
         currModel.scan(rowInt,colInt);
         currModel.shootAtPlayer();
+        //currModel.shootAtPlayer_hard();
         Gson gson = new Gson();
         return gson.toJson(currModel);
     }

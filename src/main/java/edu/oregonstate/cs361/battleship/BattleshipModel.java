@@ -142,6 +142,20 @@ public class BattleshipModel {
             //end of easy mode
     }
 
+    public void shootAtPlayer_hard() {
+        //this is hard mode, shoots at random locations
+        int max = 10;
+        int min = 1;
+        Random random = new Random();
+        int randRow = random.nextInt(max - min + 1) + min;
+        int randCol = random.nextInt(max - min + 1) + min;
+        Coordinate coor = new Coordinate(randRow,randCol);
+        playerShot(coor);
+        //end of hard mode
+    }
+
+
+
     void playerShot(Coordinate coor) {
 
 
