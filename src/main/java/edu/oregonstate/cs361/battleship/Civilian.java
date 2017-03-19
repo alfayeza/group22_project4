@@ -9,8 +9,8 @@ public class Civilian extends Ship {
         super(n, l, s, e);
     }
 
-    private String name;
-    private int length;
-    private Coordinate start;
-    private Coordinate end;
+        private String name;
+        private int length;
+        private Coordinate start;
+        private Coordinate end;
 }

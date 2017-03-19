@@ -207,6 +207,27 @@ public class BattleshipModel {
             scanResult = false;
         }
     }
+    public void getRandomNumber(){
 
+        Random rand = new Random();
+
+        int  n = rand.nextInt(10) + 1;
+    }
+
+    public boolean ifSink(Ship s, ArrayList<Coordinate> hits, ArrayList<Coordinate> sunk){
+
+        s.isSunk(hits);
+
+        if(s.getSunk()==true){
+            for(int i=0; i<hits.size(); i++){
+                if(s.covers(hits.get(i))){
+                    sunk.add(hits.get(i));
+                }
+            }
+            return true;
+        }
+        else
+            return false;
+    }
 
 }
